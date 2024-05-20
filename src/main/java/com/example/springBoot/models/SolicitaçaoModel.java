@@ -1,6 +1,7 @@
 package com.example.springBoot.models;
 
 import com.example.springBoot.dto.SolicitaçaoRequestDTO;
+import com.example.springBoot.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 

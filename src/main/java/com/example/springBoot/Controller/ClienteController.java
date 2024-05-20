@@ -24,7 +24,7 @@ public class ClienteController {
     ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity<?> registraCliente (@RequestBody @Valid ClienteRequestDTO data){
+    public ResponseEntity<?> addCliente (@RequestBody @Valid ClienteRequestDTO data){
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.registra(data));
     }
 

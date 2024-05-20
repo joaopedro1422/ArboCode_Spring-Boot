@@ -1,5 +1,6 @@
 package com.example.springBoot.dto;
 
+import com.example.springBoot.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,5 +1,6 @@
 package com.example.springBoot.dto;
 
+import com.example.springBoot.enums.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
