@@ -1,12 +1,11 @@
 package com.example.springBoot.Controller;
 
-import com.example.springBoot.dto.PlantaRequestDTO;
+import com.example.springBoot.dto.planta.PlantaRequestDTO;
 import com.example.springBoot.models.PlantaModel;
 import com.example.springBoot.service.PlantaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

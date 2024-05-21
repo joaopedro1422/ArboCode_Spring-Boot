@@ -1,10 +1,9 @@
 package com.example.springBoot.service;
 
-import com.example.springBoot.dto.PlantaResponseDTO;
-import com.example.springBoot.dto.SolicitaçaoRequestDTO;
-import com.example.springBoot.dto.SolicitaçaoResponseAdminDTO;
-import com.example.springBoot.dto.SolicitaçaoResponseClienteDTO;
-import com.example.springBoot.enums.Status;
+import com.example.springBoot.dto.planta.PlantaResponseDTO;
+import com.example.springBoot.dto.solicitaçao.SolicitaçaoRequestDTO;
+import com.example.springBoot.dto.solicitaçao.SolicitaçaoResponseAdminDTO;
+import com.example.springBoot.dto.solicitaçao.SolicitaçaoResponseClienteDTO;
 import com.example.springBoot.models.ClienteModel;
 import com.example.springBoot.models.PlantaModel;
 import com.example.springBoot.models.SolicitaçaoModel;
@@ -95,7 +94,7 @@ public class SolicitaçaoService {
         PlantaModel planta = plantaRepository.findById(idPlanta).get();
         PlantaResponseDTO plantaResponse = new PlantaResponseDTO(planta.getNomePlanta(),planta.getDescriçaoPlanta(),
                 planta.getPorte(),
-                planta.getValor());
+                planta.getValor(), planta.getImagem());
         return plantaResponse;
     }
 
@@ -140,7 +139,7 @@ public class SolicitaçaoService {
     private SolicitaçaoResponseAdminDTO converteModelEmDTOAdmin(SolicitaçaoModel model){
         ClienteModel cliente = clienteRepository.findById(model.getIdCliente()).get();
         PlantaModel planta = plantaRepository.findById(model.getIdPlanta()).get();
-        SolicitaçaoResponseAdminDTO response = new SolicitaçaoResponseAdminDTO(planta.getNomePlanta(), cliente.getNomeCliente(), cliente.getUsuario(),cliente.getEndereçoCliente(),cliente.getTelefoneCliente(),model.getData(), "PENDENTE");
+        SolicitaçaoResponseAdminDTO response = new SolicitaçaoResponseAdminDTO(planta.getNomePlanta(), cliente.getNomeCliente(), cliente.getEmail(),cliente.getEndereçoCliente(),cliente.getTelefoneCliente(),model.getData(), "PENDENTE");
         return response;
     }
 

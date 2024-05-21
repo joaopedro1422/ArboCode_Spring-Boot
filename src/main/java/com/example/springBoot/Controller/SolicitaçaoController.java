@@ -1,12 +1,10 @@
 package com.example.springBoot.Controller;
 
-import com.example.springBoot.dto.PlantaResponseDTO;
-import com.example.springBoot.dto.SolicitaçaoRequestDTO;
-import com.example.springBoot.enums.Status;
+import com.example.springBoot.dto.planta.PlantaResponseDTO;
+import com.example.springBoot.dto.solicitaçao.SolicitaçaoRequestDTO;
 import com.example.springBoot.models.SolicitaçaoModel;
 import com.example.springBoot.service.SolicitaçaoService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -107,6 +105,10 @@ public class SolicitaçaoController {
         return ResponseEntity.status(HttpStatus.OK).body(solicitaçaoService.getPlantaMaisSolicitada());
     }
 
+    /**
+     * Endpoint que retorna a receita bruta das solicitações de plantio realizadas com sucesso
+     * @return - Double com a soma total dos valores das Plantas solicitadas
+     */
     @GetMapping("/receitaBruta")
     public ResponseEntity<?> getReceitaBruta(){
         return ResponseEntity.status(HttpStatus.OK).body(solicitaçaoService.getReceitaBruta());

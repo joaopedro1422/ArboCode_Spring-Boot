@@ -1,9 +1,8 @@
 package com.example.springBoot.service;
 
-import com.example.springBoot.dto.PlantaRequestDTO;
+import com.example.springBoot.dto.planta.PlantaRequestDTO;
 import com.example.springBoot.models.PlantaModel;
 import com.example.springBoot.repository.PlantaRepository;
-import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

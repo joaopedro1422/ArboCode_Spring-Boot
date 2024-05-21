@@ -1,4 +1,4 @@
-package com.example.springBoot.dto;
+package com.example.springBoot.dto.planta;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -18,4 +18,5 @@ public class PlantaResponseDTO {
     private String descriçaoPlanta;
     private String porte;
     private BigDecimal valor;
+    private String imagem;
 }

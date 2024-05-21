@@ -1,6 +1,7 @@
 package com.example.springBoot.Controller;
 
-import com.example.springBoot.dto.ClienteRequestDTO;
+import com.example.springBoot.dto.cliente.ClienteRequestDTO;
+import com.example.springBoot.exceptions.SenhaAtualIncorretaException;
 import com.example.springBoot.models.ClienteModel;
 import com.example.springBoot.service.ClienteService;
 import jakarta.validation.Valid;
@@ -23,11 +24,6 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @PostMapping
-    public ResponseEntity<?> addCliente (@RequestBody @Valid ClienteRequestDTO data){
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.registra(data));
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getCliente (@PathVariable(value = "id")UUID id){
         Optional<ClienteModel> cliente = clienteService.getCliente(id);
@@ -41,6 +37,35 @@ public class ClienteController {
     public ResponseEntity<?> getAllClientes(){
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listaClientes());
     }
+
+    @PutMapping("/upEndereço/{id}")
+    public ResponseEntity<?> updateEndereço(@PathVariable(value = "id") UUID id,
+                                            @RequestParam("endereço") String novoEndereço){
+        Optional<ClienteModel> cliente = clienteService.getCliente(id);
+        if(cliente.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
+        }
+        ClienteModel clienteModel = cliente.get();
+        clienteModel.setEndereçoCliente(novoEndereço);
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.saveCliente(clienteModel));
+    }
+
+    @PutMapping("/upSenha/{id}")
+    public ResponseEntity<?> updateSenha(@PathVariable(value = "id") UUID id,
+                                         @RequestParam("senhaAtual") String senhaAtual,
+                                         @RequestParam("novaSenha") String novaSenha) throws SenhaAtualIncorretaException {
+        Optional<ClienteModel> clienteOptional = clienteService.getCliente(id);
+        if(clienteOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
+        }
+        ClienteModel clienteModel = clienteOptional.get();
+        clienteService.verificaSenha(clienteModel,senhaAtual); /* Lança uma exceção caso a senha atual esteja incorreta*/
+        clienteModel.setSenha(novaSenha);
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.saveCliente(clienteModel));
+    }
+
+
+
 
 
 

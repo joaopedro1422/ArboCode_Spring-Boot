@@ -1,4 +1,4 @@
-package com.example.springBoot.dto;
+package com.example.springBoot.dto.cliente;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -7,5 +7,5 @@ import java.util.Date;
 import java.util.UUID;
 
 public record ClienteRequestDTO(@NotBlank String nomeCliente, @NotBlank String cpfCliente, @NotBlank String telefoneCliente
-    , @NotBlank String endereçoCliente,Date dataNascimento, @NotBlank String usuario, @NotBlank String senha) {
+    , @NotBlank String endereçoCliente,Date dataNascimento, @NotBlank String email, @NotBlank String senha) {
 }

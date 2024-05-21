@@ -1,6 +1,6 @@
 package com.example.springBoot.models;
 
-import com.example.springBoot.dto.PlantaRequestDTO;
+import com.example.springBoot.dto.planta.PlantaRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +28,7 @@ public class PlantaModel implements Serializable {
     private String descriçaoPlanta;
     private String porte;
     private BigDecimal valor;
+    private String imagem;
 
     public PlantaModel(PlantaRequestDTO data) {
         this.nomePlanta = data.nomePlanta();
@@ -74,5 +75,13 @@ public class PlantaModel implements Serializable {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }

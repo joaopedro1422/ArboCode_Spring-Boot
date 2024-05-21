@@ -1,20 +1,9 @@
 package com.example.springBoot.models;
 
-import com.example.springBoot.dto.ClienteRequestDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.example.springBoot.dto.cliente.ClienteRequestDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
+import lombok.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.UUID;
 
@@ -36,17 +25,18 @@ public class ClienteModel {
     private String telefoneCliente;
     private String endereçoCliente;
     private Date dataDeNascimento;
-    private String usuario;
+    private String email;
     private String senha;
+    private String role;
 
-    public ClienteModel(ClienteRequestDTO data){
+    public ClienteModel(ClienteRequestDTO data, String senhaHash){
         this.cpfCliente= data.cpfCliente();
         this.nomeCliente= data.nomeCliente();
         this.telefoneCliente= data.telefoneCliente();
         this.endereçoCliente = data.endereçoCliente();
         this.dataDeNascimento = data.dataNascimento();
-        this.usuario = data.usuario();
-        this.senha = data.senha();
+        this.email = data.email();
+        this.senha = senhaHash;
     }
 
     public UUID getIdCliente() {
