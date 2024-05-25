@@ -14,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Definição das permições de acesso a cada Endpoint
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -23,14 +26,23 @@ public class SecurityConfig {
     @Autowired
     SecurityFilter securityFilter;
 
+    /**
+     * Filtro para as definições de Segurança
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(csrf-> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize-> authorize
-                        .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/auth/login").permitAll() // Com o permitAll permitimos o acesso a qualquer uuário, independente de estar autenticado ou não
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers(HttpMethod.GET, "/plantas").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/plantas").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/plantas/{id}").permitAll()
+                        .anyRequest().authenticated()) // Autoriza o resto apenas para usuários autenticados
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

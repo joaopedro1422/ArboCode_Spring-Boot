@@ -32,6 +32,7 @@ public class PlantaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(plantaService.registraNovaPlanta(data));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<?> listarPlantasCatalogo(){
         return ResponseEntity.status(HttpStatus.OK).body(plantaService.getAll());
